@@ -63,7 +63,9 @@
 	<tx:annotation-driven transaction-manager="transactionManagerJpa" />
 
 	<!-- =============== Web Controller ================== -->
-	<bean id="employeeController" class="swt6.spring.euro.web.EmployeeController"></bean>
+	<bean id="GameController" class="swt6.spring.euro.web.GameController"/>
+	<bean id="TeamController" class="swt6.spring.euro.web.TeamController"/>
+	<bean id="PredictionController" class="swt6.spring.wuro.web.PredictionController"/>
 
 </beans>
 
