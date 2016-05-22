@@ -3,30 +3,30 @@ package swt6.spring.euro.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
+import swt6.spring.euro.domain.Player;
 import swt6.spring.euro.domain.Team;
-import swt6.spring.euro.domain.User;
-import swt6.spring.euro.logic.TeamFacade;
-import swt6.spring.euro.logic.UserFacade;
+import swt6.spring.euro.logic.GameFacade;
+import swt6.spring.euro.logic.PredictionFacade;
 
 public class DatabaseInitializer implements CommandLineRunner {
 
 	@Autowired
-	private UserFacade user;
+	private PredictionFacade prediction;
 	
 	@Autowired 
-	private TeamFacade team;
+	private GameFacade game;
 	
 	@Override
 	public void run(String... args) throws Exception {
-		User werner = new User("Werner", "werner@students.fh-hagenberg.com");
-		User sepp = new User("Sepp", "sepp@students.fh-hagenberg.com");
-		User franz = new User("Franz", "franz@students.fh-hagenberg.com");
+		prediction.syncPlayer(new Player("Werner", "werner@students.fh-hagenberg.com"));
+		prediction.syncPlayer(new Player("Sepp", "sepp@students.fh-hagenberg.com"));
+		prediction.syncPlayer(new Player("Franz", "franz@students.fh-hagenberg.com"));
 		
-		Team austria = new Team("Austria");
-		Team romania = new Team("Romania");
-		Team germany = new Team("Germany");
-		Team france = new Team("France");
-		Team spain = new Team("Spain");
-		Team italy = new Team("Italy");
+		game.syncTeam(new Team("Austria"));
+		game.syncTeam(new Team("Romania"));
+		game.syncTeam(new Team("Germany"));
+		game.syncTeam(new Team("France"));
+		game.syncTeam(new Team("Spain"));
+		game.syncTeam(new Team("Italy"));
 	}
 }

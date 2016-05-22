@@ -10,6 +10,6 @@ import swt6.spring.euro.domain.Prediction;
 
 @Repository
 public interface PredictionRepository extends JpaRepository<Prediction, Long> {
-	@Query("select p from Prediction p where p.Owner = ?1")
+	@Query("select p from Prediction p where p.owner = ?1")
 	List<Prediction> getByOwner(Long id);
 }
