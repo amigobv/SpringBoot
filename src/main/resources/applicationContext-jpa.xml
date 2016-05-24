@@ -64,7 +64,8 @@
 
 	<!-- =============== Web Controller ================== -->
 <!-- 	<bean id="gameController" class="swt6.spring.euro.web.GameController"/> -->
-	<bean id="teamController" class="swt6.spring.euro.web.TeamController"/>
+<!-- 	<bean id="teamController" class="swt6.spring.euro.web.TeamController"/> -->
+	<bean id="playerController" class="swt6.spring.euro.web.PlayerController"/>
 <!-- 	<bean id="predictionController" class="swt6.spring.wuro.web.PredictionController"/> -->
 
 </beans>

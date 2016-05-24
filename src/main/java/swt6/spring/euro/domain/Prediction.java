@@ -19,7 +19,7 @@ public class Prediction implements Serializable{
 	
 	private int hostGoals;
 	
-	private int guetsGoals;
+	private int guestGoals;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	private Player owner;
@@ -30,8 +30,8 @@ public class Prediction implements Serializable{
 	public Prediction() {}
 	
 	public Prediction(int hostGoals, int guestGoals) {
-		this.setHostGoals(hostGoals);
-		this.setGuetsGoals(guestGoals);
+		this.hostGoals = hostGoals;
+		this.guestGoals = guestGoals;
 	}
 
 	public int getHostGoals() {
@@ -42,12 +42,12 @@ public class Prediction implements Serializable{
 		this.hostGoals = hostGoals;
 	}
 
-	public int getGuetsGoals() {
-		return guetsGoals;
+	public int getGuestGoals() {
+		return guestGoals;
 	}
 
-	public void setGuetsGoals(int guetsGoals) {
-		this.guetsGoals = guetsGoals;
+	public void setGuestGoals(int guestGoals) {
+		this.guestGoals = guestGoals;
 	}
 
 	public Game getGame() {
@@ -65,6 +65,12 @@ public class Prediction implements Serializable{
 	public void setOwner(Player owner) {
 		this.owner = owner;
 	}
-	
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

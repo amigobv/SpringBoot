@@ -19,6 +19,15 @@ public class Player implements Serializable{
 	@GeneratedValue
 	private Long Id;
 	
+	@Id @GeneratedValue
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
 	private String email;
 	private String name;
 	
@@ -50,7 +59,7 @@ public class Player implements Serializable{
 	
 	public void addPrediction(Prediction p) {
 		if(p.getOwner() != null)
-			p.getOwner().getPredictions().remove(p);
+			p.getOwner().predictions.remove(p);
 		
 		predictions.add(p);
 		p.setOwner(this);
@@ -63,6 +72,7 @@ public class Player implements Serializable{
 		predictions.remove(p);
 	}
 
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	public Set<Prediction> getPredictions() {
 		return predictions;
 	}

@@ -6,21 +6,22 @@ import org.springframework.boot.CommandLineRunner;
 import swt6.spring.euro.domain.Player;
 import swt6.spring.euro.domain.Team;
 import swt6.spring.euro.logic.GameFacade;
+import swt6.spring.euro.logic.PlayerFacade;
 import swt6.spring.euro.logic.PredictionFacade;
 
 public class DatabaseInitializer implements CommandLineRunner {
 
 	@Autowired
-	private PredictionFacade prediction;
+	private PlayerFacade player;
 	
 	@Autowired 
 	private GameFacade game;
 	
 	@Override
 	public void run(String... args) throws Exception {
-		prediction.syncPlayer(new Player("Werner", "werner@students.fh-hagenberg.com"));
-		prediction.syncPlayer(new Player("Sepp", "sepp@students.fh-hagenberg.com"));
-		prediction.syncPlayer(new Player("Franz", "franz@students.fh-hagenberg.com"));
+		player.syncPlayer(new Player("Werner", "werner@students.fh-hagenberg.com"));
+		player.syncPlayer(new Player("Sepp", "sepp@students.fh-hagenberg.com"));
+		player.syncPlayer(new Player("Franz", "franz@students.fh-hagenberg.com"));
 		
 		game.syncTeam(new Team("Austria"));
 		game.syncTeam(new Team("Romania"));

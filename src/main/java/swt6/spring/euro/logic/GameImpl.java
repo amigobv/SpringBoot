@@ -3,17 +3,16 @@ package swt6.spring.euro.logic;
 import java.util.Date;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import swt6.spring.euro.dao.GameRepository;
 import swt6.spring.euro.dao.TeamRepository;
 import swt6.spring.euro.domain.Game;
 import swt6.spring.euro.domain.Team;
 
-@Component
+@Component()
 @Transactional
 public class GameImpl implements GameFacade {
 	
