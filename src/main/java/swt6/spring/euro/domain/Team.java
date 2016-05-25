@@ -33,6 +33,14 @@ public class Team implements Serializable{
 		this.setName(name);
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -85,5 +93,10 @@ public class Team implements Serializable{
 			game.setGuest(null);
 			
 		guestGames.remove(game);	
+	}
+	
+	@Override
+	public String toString() {
+		return name;
 	}
 }

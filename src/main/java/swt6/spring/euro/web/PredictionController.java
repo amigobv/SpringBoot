@@ -23,7 +23,7 @@ public class PredictionController {
 	@Autowired
 	private PlayerFacade player;
 	
-	@RequestMapping("/users/{playerId}/predictions")
+	@RequestMapping("/{playerId}/predictions")
 	public String games(@PathVariable("playerId") long userId, Model model) {
 		Player user = player.findPlayerById(userId);
 		

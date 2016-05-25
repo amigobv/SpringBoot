@@ -59,22 +59,22 @@ public class GameImpl implements GameFacade {
 		return gameRepo.saveAndFlush(game);
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public Game findGameById(Long id) {
 		return gameRepo.findOne(id);
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<Game> findGameByDate(Date date) {
 		return gameRepo.findByDay(date);
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<Game> findGamesByHost(Long hostId) {
 		return gameRepo.findByHost(hostId);
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<Game> findGamesByGuest(Long guestId) {
 		return gameRepo.findByGuest(guestId);
 	}
@@ -90,7 +90,7 @@ public class GameImpl implements GameFacade {
 		return null;
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<Game> findAllGames() {
 		return gameRepo.findAll();
 	}

@@ -1,6 +1,7 @@
 package swt6.spring.euro.domain;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,11 +20,12 @@ import javax.persistence.TemporalType;
 @Entity
 public class Game implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	private static final DateFormat fmt = DateFormat.getDateTimeInstance();
+	
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	@ManyToOne(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private Team host;
 	
@@ -35,21 +37,33 @@ public class Game implements Serializable{
 	private int guestGoals;
 	
 	@Temporal(TemporalType.DATE)
-	private Date date;
+	private Date gameDay;
 	
 	@OneToMany(mappedBy="game", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
 	private Set<Prediction> predictions = new HashSet<>();
 	
 	public Game() {}
 	
-	public Game(Team host, Team guest) {
-		this.setHost(host);
-		this.setGuest(guest);
+	public Game(Team host, Team guest, Date gameDay) {
+		host.addHostGame(this);
+		guest.addGuestGame(this);
+		this.gameDay = gameDay;
 	}
 	
-	public void setResult(int hostGoals, int guestGoals) {
-		this.hostGoals = hostGoals;
-		this.guestGoals = guestGoals;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getGameDay() {
+		return gameDay;
+	}
+
+	public void setGameDay(Date gameDay) {
+		this.gameDay = gameDay;
 	}
 	
 	public int getHostGoals() {
@@ -66,18 +80,6 @@ public class Game implements Serializable{
 	
 	public void setGuestGoals(int goals) {
 		guestGoals = goals;
-	}
-	
-	public String getResult() {
-		return String.format("%d : %d", hostGoals, guestGoals);
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public Team getHost() {
@@ -110,4 +112,17 @@ public class Game implements Serializable{
 		
 		predictions.remove(p);
 	}
+	
+	@OneToMany(mappedBy="game", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	public Set<Prediction> getPredictions() {
+		return predictions;
+	}
+	
+	@Override
+	public String toString() {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append(id + ": " + host.getName() + " : " + guest.getName() + " (" + fmt.format(gameDay.toString()) + ")" );
+	    
+	    return sb.toString();
+	  }
 }

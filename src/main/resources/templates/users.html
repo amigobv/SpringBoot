@@ -21,7 +21,7 @@
 			<tbody>
 				<tr th:each="player : ${players}">
 					<td th:text="${player.name}">User</td>
-					<td><a th:href="@{|/users/${player.id}/predictions|}" th:text="#{users.select}">Auswählen</a></td>
+					<td><a th:href="@{|/${player.id}/predictions|}" th:text="#{users.select}">Auswählen</a></td>
 				</tr>
 			</tbody>
 		</table>

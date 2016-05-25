@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head">
+<title>App Title</title>
+</head>
+
+<body role="document">
+	<div th:replace="layout :: navBar">Euro 2016</div>
+
+	<div class="container">
+		<div class="page-title">
+			<h2 th:text="#{game.title}">Game</h2>
+		</div>
+
+		<form th:object="${game}" method="post">
+			<input type="hidden" th:field="*{id}" />
+
+			<div class="row">
+				<div class="form-group col-sm-3">
+					<label for="gameDate">Date:</label> 
+					<input id="gameDate" type="text" th:field="*{gameDay}" class="form-control" />
+				</div>
+			</div>
+			
+			<div class = "row">
+				<div class="form-group col-sm-3">
+					<label for="host">Host:</label> 
+					<select class="form-control" id="host" th:field="*{host}">
+						<option th:each="team : ${teams}" 
+								th:value="${team.id}"
+								th:text="${team.name}"
+								>Host Team</option>
+					</select>
+					<input id="goalsHost" type="number" th:field="*{hostGoals}" class="form-control" />
+				</div>
+
+				<div class="form-group col-sm-3">
+					<label for="host">Guest:</label> 
+					<select class="form-control" th:field="*{guest}">
+						<option th:each="team : ${teams}" 
+								th:value="${team.id}" 
+								th:text="${team.name}" 
+								>Guest Team</option>
+					</select>	
+					<input id="goalsGuest" type="number" th:field="*{guestGoals}" class="form-control" />
+				</div>
+			</div>
+			
+			<input type="submit" th:value="${game.id == null ? 'Add' : 'Update'}"
+				class="btn btn-success" />
+		</form>
+
+	</div>
+</body>
+</html>

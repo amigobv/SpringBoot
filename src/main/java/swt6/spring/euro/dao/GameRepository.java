@@ -12,7 +12,7 @@ import swt6.spring.euro.domain.Team;
 
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
-	@Query("select g from Game g where g.date = ?1")
+	@Query("select g from Game g where g.gameDay = ?1")
 	List<Game> findByDay(Date date);
 	
 	@Query("select g from Game g where g.host = ?1 Or g.guest = ?1")
@@ -24,7 +24,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 	@Query("select g from Game g where g.guest = ?1")
 	List<Game> findByGuest(Long host);
 	
-	@Query("select g from Game g where g.date > ?1")
+	@Query("select g from Game g where g.gameDay > ?1")
 	List<Game> findOlderThan(Date date);
 	
 	
